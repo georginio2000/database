@@ -166,9 +166,6 @@ IGNORE 1 ROWS
 (recipes_recipe_id, themes_theme_id);
 
 
-INSERT INTO current_season (current_season) VALUES (1);
-
-
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/recipes_has_cooks.csv'
 INTO TABLE test.recipes_has_cooks
 FIELDS TERMINATED BY ','
@@ -178,3 +175,4 @@ IGNORE 1 ROWS
 (recipes_recipe_id, cooks_cook_id);
 
 
+INSERT INTO current_season (current_season) VALUES (0);
