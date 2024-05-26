@@ -1,4 +1,4 @@
-USE test;
+USE test_script;
 
 DROP TABLE IF EXISTS recipes_has_steps;
 DROP TABLE IF EXISTS recipes_has_meal_type;
@@ -21,6 +21,25 @@ DROP TABLE IF EXISTS cooks ;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS steps;
 DROP TABLE IF EXISTS themes;
+DROP TABLE IF EXISTS images;
+
+DROP TABLE IF EXISTS users ;
+
+CREATE TABLE IF NOT EXISTS images (
+  image_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  link VARCHAR(256) NOT NULL,
+  description VARCHAR(46) NOT NULL,
+  PRIMARY KEY (image_id) )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  username VARCHAR(45) NOT NULL,
+  password VARCHAR(60) NOT NULL,  -- Assuming using bcrypt which generates 60-character hashes
+  role ENUM('admin', 'user') NOT NULL,
+  PRIMARY KEY (user_id),
+  UNIQUE INDEX username_UNIQUE (username ASC) VISIBLE)
+ENGINE = InnoDB;
 
 
 
@@ -212,7 +231,13 @@ CREATE TABLE IF NOT EXISTS cooks (
   age INT UNSIGNED NOT NULL,
   role ENUM("A", "B", "C", "SOUS_CHEF", "CHEF") NOT NULL,
   years_of_experience INT UNSIGNED NULL,
-  PRIMARY KEY (cook_id))
+  user_id INT UNSIGNED NULL,
+  PRIMARY KEY (cook_id),
+  CONSTRAINT fk_cooks_users1
+    FOREIGN KEY (user_id)
+    REFERENCES users (user_id)
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX cook_id_UNIQUE ON cooks (cook_id);
@@ -348,7 +373,6 @@ ENGINE = InnoDB;
 CREATE INDEX fk_recipes_has_tags_tags1_idx ON recipes_has_tags (tags_tag_id);
 
 CREATE INDEX fk_recipes_has_tags_recipes1_idx ON recipes_has_tags (recipes_recipe_id);
-
 
 
 -- Table recipes_has_tips
