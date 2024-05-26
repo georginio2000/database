@@ -9,3 +9,4 @@
 4)In your VS Code, select the Python Interpreter.
 
 5)Install with pip, necessary libraries: pip install -r requirements.txt.
+![floawchart drawio](https://github.com/georginio2000/databases2024_team122/assets/104021377/f1cf8291-71eb-4705-bc60-12aa4ebbda05)
