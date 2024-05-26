@@ -1,4 +1,4 @@
-	STEPS
+STEPS
 
 1)Download MySQL Installer 8.0.37 for Microsoft Windows.
 
