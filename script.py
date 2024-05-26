@@ -82,8 +82,6 @@ def create_database(conn, host, port, user, password):
     ddl_file = 'ddl.sql'  # Assuming the DDL file is named ddl.sql and is in the same directory
     execute_sql_file(cursor, ddl_file)
 
-    procedures_triggers = 'procedures_triggers.sql'
-    execute_sql_file(cursor, procedures_triggers)
 
 
     dml_file = 'dml.sql'  # Assuming the DML file is named dml.sql and is in the same directory
